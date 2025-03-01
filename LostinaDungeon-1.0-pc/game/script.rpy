@@ -376,7 +376,7 @@ label start:
                 jump go_right
 
             "Attack the Goblin" if visibleTrap == 1 and sword == 1 and goblinGuard == 1:
-                Goblin "My, how uncivilized. It seems we will be unable to converse after all. I had high hopes in you."
+                "Goblin" "My, how uncivilized. It seems we will be unable to converse after all. I had high hopes in you."
                 $ renpy.movie_cutscene("trading hits.webm")
                 $ health = health - 3
                 "The goblin was insanely strong. It was a bolaslinger, and you kept getting tripped up."
@@ -385,10 +385,10 @@ label start:
                 jump go_right
 
             "Talk to the Goblin" if visibleTrap == 1 and goblinGuard == 1:
-                Goblin "Ah, finally. A civil one. It has been so long since I've interacted with one like you."
+                "Goblin" "Ah, finally. A civil one. It has been so long since I've interacted with one like you."
                 "This goblin is suspicously well spoken."
-                Goblin "I know I am suspicously well spoken, but this is simply how I was born."
-                Goblin "Tell you what, if you offer me some food, I'll tell you something good."
+                "Goblin" "I know I am suspicously well spoken, but this is simply how I was born."
+                "Goblin" "Tell you what, if you offer me some food, I'll tell you something good."
                 "Give the goblin food?"
                 menu:
                     "Yeah, why not" if bread >= 1:
@@ -404,7 +404,7 @@ label start:
     label nearEscape:
         scene goblin next to escape
         if goblinExit == 1:  
-            "A Goblin is visible on the other side of the room"
+            "A Goblin is visible on the other side of the room. It looks dangerous."
             if lanternLit == 1:
                 "It spots you and attacks right away! It's strong!"
                 $ renpy.movie_cutscene("getting hit.webm")
