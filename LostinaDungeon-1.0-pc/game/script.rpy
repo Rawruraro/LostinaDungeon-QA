@@ -48,7 +48,7 @@ label start:
     "It seems safe here. You could wait here... or have this your return spot."
     label hub:
         scene spawn
-        if hunger <= 0 or health <= 0:
+        if hunger =< 0 or health =< 0:
             jump PerishEnd
         
         if lantern == 1:
@@ -95,7 +95,7 @@ label start:
                 $ rescueIncoming = rescueIncoming + 1
                 if health < 5:
                     "In exchange, it seems your recovery is boosted."
-                    $ health = health + 1
+                    $ health += 1
                 jump hub
 
             "Self Check":
@@ -201,10 +201,10 @@ label start:
                 if lanternLit == 1:
                     $ renpy.movie_cutscene("blocking hit.webm")
                     "Luckily, you were able to defend because you saw it wind up!"
-                    $ health = health - 1
+                    $ health -= 1
                 else:
                     $ renpy.movie_cutscene("getting hit.webm")
-                    $ health = health - 2
+                    $ health -= 2
                 "You fall back before it can do any more harm to you."
                 jump hub
             else: 
@@ -213,7 +213,7 @@ label start:
                     "Fight it" if sword == 1:
                         $ renpy.movie_cutscene("trading hits.webm")
                         "You fight it off, but it wasn't pretty. You took some damage."
-                        $ health = health - 2
+                        $ health -= 2
                         show moldybread at mid
                         "Seems like it dropped some bread. You take it back with you."
                         hide moldybread
@@ -233,7 +233,7 @@ label start:
                         else: 
                             $ renpy.movie_cutscene("trading hits.webm")
                             "You kill it before it severely damaged you. It still hit you, though."
-                            $ health = health - 1
+                            $ health -= 1
                             show moldybread at mid
                             "Seems like it dropped some bread. You take it back with you."
                             hide moldybread
@@ -254,7 +254,7 @@ label start:
                         else: 
                             "It spots you and attacks!"
                             $ renpy.movie_cutscene("getting hit.webm")
-                            $ health = health - 2
+                            $ health -= 2
                             "You fall back before it can do any more harm to you."
                             jump hub
                     "Offer it Food" if bread >= 1:
@@ -266,13 +266,13 @@ label start:
                             jump hub
                         else: 
                             "It knocks the bread out your hands and attacks!"
-                            $ health = health - 2
+                            $ health -= 2
                             "You run back to your safe place, injured."
                             jump hub
 
 
         elif exploration >= 3:
-            if breadFind <=3:
+            if breadFind =<3:
                 $ bread = bread + 1
                 scene bread on ground
                 "You find some bread on the ground."
@@ -353,6 +353,7 @@ label start:
         if lanternLit == 1 and visibleTrap == 0:
             "Good thing you do."      
         elif visibleTrap == 1:
+            scene lantern trap and goblin
             "Good thing you already know where the trap is."
             scene lantern trap and goblin
         menu:
@@ -361,8 +362,8 @@ label start:
                 if visibleTrap == 1:
                     jump nearEscape
                 "OUCH! You stepped on a trap."
-                $ health = health - 2
-                if health <= 0:
+                $ health -= 2
+                if health =< 0:
                     jump PerishEnd
                 "But well, you're still standing. Too bad you don't know where the trap is."
                 jump nearEscape
@@ -378,7 +379,9 @@ label start:
             "Attack the Goblin" if visibleTrap == 1 and sword == 1 and goblinGuard == 1:
                 "Goblin" "My, how uncivilized. It seems we will be unable to converse after all. I had high hopes in you."
                 $ renpy.movie_cutscene("trading hits.webm")
-                $ health = health - 3
+                $ health -= 3
+                if health =< 0:
+                    jump PerishEnd
                 "The goblin was insanely strong. It was a bolaslinger, and you kept getting tripped up."
                 "Eventually, you win through pure physical difference."
                 $ goblinGuard = 0
@@ -409,7 +412,7 @@ label start:
                 "It spots you and attacks right away! It's strong!"
                 $ renpy.movie_cutscene("getting hit.webm")
                 $ health == health - 4
-                if health <= 0:
+                if health =< 0:
                     jump PerishEnd
                 if sword == 1:
                     "You fight with all your might, taking him down before you fall."
@@ -426,8 +429,8 @@ label start:
                     "Fight it" if sword == 1:
                         "The goblin is stronger than all the goblins you've faced. Your only advantage is you caught it by surprise."
                         $ renpy.movie_cutscene("trading hits.webm")
-                        $ health = health - 3
-                        if health <= 0:
+                        $ health -= 3
+                        if health =< 0:
                             jump PerishEnd
                         $ goblinExit = goblinExit - 1
                         jump nearEscape
@@ -435,8 +438,8 @@ label start:
                     "Talk to it":
                         "It doesn't want to."
                         "It turns hostile and attacks you."
-                        $ health = health - 4
-                        if health <= 0:
+                        $ health -= 4
+                        if health =< 0:
                             jump PerishEnd
                         "You run back to your safe place before it kills you."
                         jump hub
