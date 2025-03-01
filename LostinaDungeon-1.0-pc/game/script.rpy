@@ -5,7 +5,7 @@
 # The game starts here.
 
 label start:
-    define health = 4
+    define health = 3
     define hunger = 3
     define sword = 0
     define lantern = 0
@@ -48,7 +48,7 @@ label start:
     "It seems safe here. You could wait here... or have this your return spot."
     label hub:
         scene spawn
-        if hunger =< 0 or health =< 0:
+        if hunger <=  0 or health <=  0:
             jump PerishEnd
         
         if lantern == 1:
@@ -93,7 +93,7 @@ label start:
                 "You feel.. hungrier."
                 $ hunger = hunger - 1
                 $ rescueIncoming = rescueIncoming + 1
-                if health < 5:
+                if health < 4:
                     "In exchange, it seems your recovery is boosted."
                     $ health += 1
                 jump hub
@@ -272,7 +272,7 @@ label start:
 
 
         elif exploration >= 3:
-            if breadFind =<3:
+            if breadFind <= 3:
                 $ bread = bread + 1
                 scene bread on ground
                 "You find some bread on the ground."
@@ -363,7 +363,7 @@ label start:
                     jump nearEscape
                 "OUCH! You stepped on a trap."
                 $ health -= 2
-                if health =< 0:
+                if health <=  0:
                     jump PerishEnd
                 "But well, you're still standing. Too bad you don't know where the trap is."
                 jump nearEscape
@@ -380,7 +380,7 @@ label start:
                 "Goblin" "My, how uncivilized. It seems we will be unable to converse after all. I had high hopes in you."
                 $ renpy.movie_cutscene("trading hits.webm")
                 $ health -= 3
-                if health =< 0:
+                if health <=  0:
                     jump PerishEnd
                 "The goblin was insanely strong. It was a bolaslinger, and you kept getting tripped up."
                 "Eventually, you win through pure physical difference."
@@ -412,7 +412,7 @@ label start:
                 "It spots you and attacks right away! It's strong!"
                 $ renpy.movie_cutscene("getting hit.webm")
                 $ health == health - 4
-                if health =< 0:
+                if health <=  0:
                     jump PerishEnd
                 if sword == 1:
                     "You fight with all your might, taking him down before you fall."
@@ -430,7 +430,7 @@ label start:
                         "The goblin is stronger than all the goblins you've faced. Your only advantage is you caught it by surprise."
                         $ renpy.movie_cutscene("trading hits.webm")
                         $ health -= 3
-                        if health =< 0:
+                        if health <=  0:
                             jump PerishEnd
                         $ goblinExit = goblinExit - 1
                         jump nearEscape
@@ -439,7 +439,7 @@ label start:
                         "It doesn't want to."
                         "It turns hostile and attacks you."
                         $ health -= 4
-                        if health =< 0:
+                        if health <=  0:
                             jump PerishEnd
                         "You run back to your safe place before it kills you."
                         jump hub
