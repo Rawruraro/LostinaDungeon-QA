@@ -393,9 +393,9 @@ label start:
                 menu:
                     "Yeah, why not" if bread >= 1:
                         $ bread = bread - 1
-                        Goblin "Don't trust everything in the dungeon. The light that shows you the way can very easily show others the way to you."
+                        "Goblin" "Don't trust everything in the dungeon. The light that shows you the way can very easily show others the way to you."
                     "No thanks":
-                        Goblin "Well, alright."
+                        "Goblin" "Well, alright."
                 jump go_right
 
             "Back off":
